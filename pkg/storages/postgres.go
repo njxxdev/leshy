@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/jackc/pgx/v4/pgxpool"
-	"github.com/njxx/leshy/pkg/component"
-	"github.com/njxx/leshy/pkg/config"
+	"github.com/njxxdev/leshy/pkg/component"
+	"github.com/njxxdev/leshy/pkg/config"
 )
 
 type PostgresRepository struct {

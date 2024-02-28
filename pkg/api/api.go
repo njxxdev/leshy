@@ -4,8 +4,8 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/njxx/leshy/pkg/component"
-	"github.com/njxx/leshy/pkg/config"
+	"github.com/njxxdev/leshy/pkg/component"
+	"github.com/njxxdev/leshy/pkg/config"
 )
 
 type APIServer struct {

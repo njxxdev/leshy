@@ -1,4 +1,4 @@
-module github.com/njxx/leshy
+module github.com/njxxdev/leshy
 
 go 1.20
 
