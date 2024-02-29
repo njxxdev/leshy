@@ -1,1 +1,1 @@
-package logs
+package leshy_logs

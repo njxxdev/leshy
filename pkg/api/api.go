@@ -1,11 +1,11 @@
-package api
+package leshy_api
 
 import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/njxxdev/leshy/pkg/component"
-	"github.com/njxxdev/leshy/pkg/config"
+	leshy_component "github.com/njxxdev/leshy/pkg/component"
+	leshy_config "github.com/njxxdev/leshy/pkg/config"
 )
 
 type APIServer struct {
@@ -13,7 +13,7 @@ type APIServer struct {
 	engine *gin.Engine
 }
 
-func (comp *APIServer) GetInstance() component.Component {
+func (comp *APIServer) GetInstance() leshy_component.Component {
 	return comp
 }
 
@@ -41,6 +41,6 @@ func (serv *APIServer) AddHandlers(handlers ...Handler) *APIServer {
 }
 
 func (serv *APIServer) Run() error {
-	port := config.GetConfigs().GetParameters()[serv.name].(map[string]interface{})["port"].(int)
+	port := leshy_config.GetConfigs().GetParameters()[serv.name].(map[string]interface{})["port"].(int)
 	return serv.engine.Run(":" + strconv.Itoa(port))
 }

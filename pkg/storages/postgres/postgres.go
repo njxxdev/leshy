@@ -1,11 +1,11 @@
-package postgres
+package leshy_postgres
 
 import (
 	"context"
 
 	"github.com/jackc/pgx/v4/pgxpool"
-	"github.com/njxxdev/leshy/pkg/component"
-	"github.com/njxxdev/leshy/pkg/config"
+	leshy_component "github.com/njxxdev/leshy/pkg/component"
+	leshy_config "github.com/njxxdev/leshy/pkg/config"
 )
 
 type PostgresRepository struct {
@@ -14,14 +14,14 @@ type PostgresRepository struct {
 	Pool *pgxpool.Pool
 }
 
-func (comp PostgresRepository) GetInstance() component.Component {
+func (comp PostgresRepository) GetInstance() leshy_component.Component {
 	return comp
 }
 
 func (comp PostgresRepository) GetName() string { return comp.name }
 
 func NewPostgresRepository(name string) *PostgresRepository {
-	url := config.GetConfigs().GetParameters()[name].(map[string]interface{})["url"].(string)
+	url := leshy_config.GetConfigs().GetParameters()[name].(map[string]interface{})["url"].(string)
 	pool, err := pgxpool.Connect(context.Background(), url)
 
 	if err != nil {

@@ -1,4 +1,4 @@
-package config
+package leshy_config
 
 import (
 	"os"

@@ -1,4 +1,4 @@
-package component
+package leshy_component
 
 import (
 	"errors"
