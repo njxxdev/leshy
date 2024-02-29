@@ -1,4 +1,4 @@
-package storages
+package postgres
 
 import (
 	"context"
