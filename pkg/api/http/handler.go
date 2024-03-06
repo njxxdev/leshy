@@ -1,4 +1,4 @@
-package leshy_api
+package leshy_http
 
 import "github.com/gin-gonic/gin"
 
