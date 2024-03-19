@@ -13,11 +13,11 @@ type MinIOComponent struct {
 	Client *minio.Client
 }
 
-func (comp MinIOComponent) GetInstance() leshy_component.Component {
+func (comp MinIOComponent) Instance() leshy_component.Component {
 	return comp
 }
 
-func (comp MinIOComponent) GetName() string { return comp.name }
+func (comp MinIOComponent) Name() string { return comp.name }
 
 // NewMinIOComponent - создание нового компонента MinIO
 func NewMinIOComponent(name string) *MinIOComponent {

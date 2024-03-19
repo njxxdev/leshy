@@ -27,11 +27,11 @@ func (manager *componentManager) Append(components ...Component) *componentManag
 	countComponents := len(components)
 	if countComponents > 0 {
 		for i := 0; i < countComponents; i++ {
-			value, ok := GetComponentManager().components[components[i].GetName()]
+			value, ok := GetComponentManager().components[components[i].Name()]
 			if ok && reflect.TypeOf(value) != reflect.TypeOf(components[i]) {
-				panic("ComponentManager: Reinitialization component with same name \"" + components[i].GetName() + "\" by different type")
+				panic("ComponentManager: Reinitialization component with same name \"" + components[i].Name() + "\" by different type")
 			}
-			GetComponentManager().components[components[i].GetName()] = components[i]
+			GetComponentManager().components[components[i].Name()] = components[i]
 		}
 	}
 	return manager

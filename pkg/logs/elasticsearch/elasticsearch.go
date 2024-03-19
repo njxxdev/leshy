@@ -1,1 +1,0 @@
-package leshy_elasticsearch

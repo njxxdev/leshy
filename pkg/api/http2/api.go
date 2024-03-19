@@ -16,11 +16,11 @@ type APIServer struct {
 	handlers []handler
 }
 
-func (server *APIServer) GetInstance() interface{} {
+func (server *APIServer) Instance() interface{} {
 	return server
 }
 
-func (server *APIServer) GetName() string { return server.name }
+func (server *APIServer) Name() string { return server.name }
 
 func (server *APIServer) updateEngine(handlers []handler) {
 	for _, h := range handlers {

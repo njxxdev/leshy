@@ -14,13 +14,13 @@ type PostgresRepository struct {
 	Pool *pgxpool.Pool
 }
 
-func (comp PostgresRepository) GetInstance() leshy_component.Component {
+func (comp PostgresRepository) Instance() leshy_component.Component {
 	return comp
 }
 
-func (comp PostgresRepository) GetName() string { return comp.name }
+func (comp PostgresRepository) Name() string { return comp.name }
 
-func NewPostgresRepository(name string) *PostgresRepository {
+func New(name string) *PostgresRepository {
 	url := leshy_config.GetConfigs().GetParameters()[name].(map[string]interface{})["url"].(string)
 	pool, err := pgxpool.Connect(context.Background(), url)
 

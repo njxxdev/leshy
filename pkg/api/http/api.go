@@ -13,11 +13,11 @@ type APIServer struct {
 	engine *gin.Engine
 }
 
-func (comp *APIServer) GetInstance() leshy_component.Component {
+func (comp *APIServer) Instance() leshy_component.Component {
 	return comp
 }
 
-func (comp *APIServer) GetName() string { return comp.name }
+func (comp *APIServer) Name() string { return comp.name }
 
 func NewAPIServer(name string, engine *gin.Engine) *APIServer {
 	engineE := engine
