@@ -19,8 +19,8 @@ func (comp MinIOComponent) Instance() leshy_component.Component {
 
 func (comp MinIOComponent) Name() string { return comp.name }
 
-// NewMinIOComponent - создание нового компонента MinIO
-func NewMinIOComponent(name string) *MinIOComponent {
+// New - создание нового компонента MinIO
+func New(name string) *MinIOComponent {
 	endpoint := leshy_config.Get().Parameters()[name].(map[string]interface{})["endpoint"].(string)
 	accessKeyID := leshy_config.Get().Parameters()[name].(map[string]interface{})["accessKeyID"].(string)
 	secretAccessKey := leshy_config.Get().Parameters()[name].(map[string]interface{})["secretAccessKey"].(string)
