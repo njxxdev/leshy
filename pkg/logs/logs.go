@@ -20,6 +20,8 @@ func (comp *Logger) Instance() leshy_component.Component {
 
 func (comp *Logger) Name() string { return comp.name }
 
+func (comp *Logger) Log() *slog.Logger { return comp.log }
+
 func New(name string) *Logger {
 	config := leshy_config.Get().Parameters()[name].(map[string]interface{})
 
