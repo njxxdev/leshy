@@ -15,7 +15,7 @@ type configManager struct {
 var instance *configManager
 var once sync.Once
 
-func LoadConfigs(filename string) {
+func Load(filename string) {
 	once.Do(func() {
 		data, err := os.ReadFile(filename)
 		if err != nil {
@@ -32,13 +32,13 @@ func LoadConfigs(filename string) {
 		}
 	})
 }
-func GetConfigs() *configManager {
+func Get() *configManager {
 	if instance == nil {
 		panic("Configs: Load configs berfore use")
 	}
 	return instance
 }
 
-func (config *configManager) GetParameters() map[interface{}]interface{} {
-	return GetConfigs().config
+func (config *configManager) Parameters() map[interface{}]interface{} {
+	return Get().config
 }

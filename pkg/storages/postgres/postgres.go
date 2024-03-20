@@ -21,7 +21,7 @@ func (comp PostgresRepository) Instance() leshy_component.Component {
 func (comp PostgresRepository) Name() string { return comp.name }
 
 func New(name string) *PostgresRepository {
-	url := leshy_config.GetConfigs().GetParameters()[name].(map[string]interface{})["url"].(string)
+	url := leshy_config.Get().Parameters()[name].(map[string]interface{})["url"].(string)
 	pool, err := pgxpool.Connect(context.Background(), url)
 
 	if err != nil {

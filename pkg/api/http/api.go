@@ -41,6 +41,6 @@ func (serv *APIServer) AddHandlers(handlers ...Handler) *APIServer {
 }
 
 func (serv *APIServer) Run() error {
-	port := leshy_config.GetConfigs().GetParameters()[serv.name].(map[string]interface{})["port"].(int)
+	port := leshy_config.Get().Parameters()[serv.name].(map[string]interface{})["port"].(int)
 	return serv.engine.Run(":" + strconv.Itoa(port))
 }

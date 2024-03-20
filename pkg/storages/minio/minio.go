@@ -21,10 +21,10 @@ func (comp MinIOComponent) Name() string { return comp.name }
 
 // NewMinIOComponent - создание нового компонента MinIO
 func NewMinIOComponent(name string) *MinIOComponent {
-	endpoint := leshy_config.GetConfigs().GetParameters()[name].(map[string]interface{})["endpoint"].(string)
-	accessKeyID := leshy_config.GetConfigs().GetParameters()[name].(map[string]interface{})["accessKeyID"].(string)
-	secretAccessKey := leshy_config.GetConfigs().GetParameters()[name].(map[string]interface{})["secretAccessKey"].(string)
-	useSSL := leshy_config.GetConfigs().GetParameters()[name].(map[string]interface{})["useSSL"].(bool)
+	endpoint := leshy_config.Get().Parameters()[name].(map[string]interface{})["endpoint"].(string)
+	accessKeyID := leshy_config.Get().Parameters()[name].(map[string]interface{})["accessKeyID"].(string)
+	secretAccessKey := leshy_config.Get().Parameters()[name].(map[string]interface{})["secretAccessKey"].(string)
+	useSSL := leshy_config.Get().Parameters()[name].(map[string]interface{})["useSSL"].(bool)
 
 	client, err := minio.New(endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(accessKeyID, secretAccessKey, ""),
