@@ -22,6 +22,10 @@ func (comp *Elasticsearch) Name() string {
 	return comp.name
 }
 
+func (comp *Elasticsearch) Client() *elasticsearch.Client {
+	return comp.client
+}
+
 // New - создает новый экземпляр компонента
 func New(name string) *Elasticsearch {
 	config := leshy_config.Get().Parameters()[name].(map[string]interface{})

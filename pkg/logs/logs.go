@@ -7,6 +7,7 @@ import (
 
 	leshy_component "github.com/njxxdev/leshy/pkg/component"
 	leshy_config "github.com/njxxdev/leshy/pkg/config"
+	leshy_elasticsearch_writer "github.com/njxxdev/leshy/pkg/storages/elasticsearch/writer"
 )
 
 type Logger struct {
@@ -41,13 +42,12 @@ func New(name string) *Logger {
 		}
 		writer = file
 	} else if dest == "elasticsearch" {
-		elastic_component_name := config["component"].(string)
-		elastic, err := leshy_component.GetContext().GetComponent(elastic_component_name)
+		elastic_writer_name := config["component"].(string)
+		elastic_writer_comp, err := leshy_component.GetContext().GetComponent(elastic_writer_name)
 		if err != nil {
 			panic("Logger: " + err.Error())
 		}
-		_ = elastic
-		// writer = elastic.(*Elasticsearch).log
+		writer = elastic_writer_comp.(*leshy_elasticsearch_writer.ElasticsearchWriter)
 	} else {
 		panic("Logger: Unknown destination \"" + dest + "\"")
 	}
@@ -71,8 +71,10 @@ func New(name string) *Logger {
 
 	return &Logger{
 		name: name,
-		log: slog.New(slog.NewJSONHandler(writer, &slog.HandlerOptions{
-			Level: logLevel,
-		})),
+		log: slog.New(slog.NewJSONHandler(writer,
+			&slog.HandlerOptions{
+				Level: logLevel,
+			},
+		)),
 	}
 }
