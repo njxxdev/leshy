@@ -7,6 +7,7 @@ import (
 
 	"github.com/google/uuid"
 	leshy_component "github.com/njxxdev/leshy/pkg/component"
+	leshy_config "github.com/njxxdev/leshy/pkg/config"
 	leshy_elasticsearch "github.com/njxxdev/leshy/pkg/storages/elasticsearch"
 
 	"github.com/elastic/go-elasticsearch/v7/esapi"
@@ -16,6 +17,22 @@ type ElasticsearchWriter struct {
 	name    string
 	elastic *leshy_elasticsearch.Elasticsearch
 	index   string
+}
+
+func New(name string) *ElasticsearchWriter {
+	config := leshy_config.Get().Parameters()[name].(map[string]interface{})
+
+	elastic_name := config["source"].(string)
+	elastic_comp, err := leshy_component.GetContext().GetComponent(elastic_name)
+	if err != nil {
+		panic("ElasticsearchWriter: " + err.Error())
+	}
+
+	return &ElasticsearchWriter{
+		name:    name,
+		elastic: elastic_comp.(*leshy_elasticsearch.Elasticsearch),
+		index:   config["index"].(string),
+	}
 }
 
 func (writer *ElasticsearchWriter) Instance() leshy_component.Component {
