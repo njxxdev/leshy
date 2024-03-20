@@ -30,9 +30,14 @@ func (comp *Elasticsearch) Client() *elasticsearch.Client {
 func New(name string) *Elasticsearch {
 	config := leshy_config.Get().Parameters()[name].(map[string]interface{})
 
+	addresses_interface := config["addresses"].([]interface{})
+	addresses := []string{}
+	for _, address_interface := range addresses_interface {
+		addresses = append(addresses, address_interface.(string))
+	}
 	// Подключение к Elasticsearch
 	client, err := elasticsearch.NewClient(elasticsearch.Config{
-		Addresses: config["addresses"].([]string),
+		Addresses: addresses,
 		Username:  config["username"].(string),
 		Password:  config["password"].(string),
 	})
